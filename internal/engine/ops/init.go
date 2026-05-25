@@ -9,11 +9,11 @@ import (
 	"path/filepath"
 	"time"
 
-	"gopkg.in/yaml.v3"
+	ioyaml "gaal/internal/core/io/yaml"
 
 	"gaal/internal/config"
 	configtemplate "gaal/internal/config/template"
-	"gaal/internal/secfile"
+	"gaal/internal/core/io/secfile"
 )
 
 // Init writes the documented gaal.yaml skeleton to dest.
@@ -172,7 +172,7 @@ func writeSkillsBlock(buf *bytes.Buffer, skills []config.ConfigSkill) error {
 		buf.WriteString("skills: []\n")
 		return nil
 	}
-	raw, err := yaml.Marshal(map[string]any{"skills": skills})
+	raw, err := ioyaml.Marshal(map[string]any{"skills": skills})
 	if err != nil {
 		return err
 	}
@@ -185,7 +185,7 @@ func writeMCPsBlock(buf *bytes.Buffer, mcps []config.ConfigMcp) error {
 		buf.WriteString("mcps: []\n")
 		return nil
 	}
-	raw, err := yaml.Marshal(map[string]any{"mcps": mcps})
+	raw, err := ioyaml.Marshal(map[string]any{"mcps": mcps})
 	if err != nil {
 		return err
 	}

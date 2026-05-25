@@ -13,6 +13,7 @@ import (
 
 	"gaal/internal/config/platform"
 	"gaal/internal/config/schema"
+	ioyaml "gaal/internal/core/io/yaml"
 )
 
 // DefaultHookTimeout is the timeout applied when a hook does not declare one.
@@ -151,6 +152,9 @@ func (h *ConfigMcpHeader) UnmarshalYAML(node *yaml.Node) error {
 		h.Value = node.Value
 		return nil
 	case yaml.MappingNode:
+		if err := ioyaml.ValidateMappingKeys(node, "value", "env"); err != nil {
+			return err
+		}
 		type rawHeader ConfigMcpHeader
 		var raw rawHeader
 		if err := node.Decode(&raw); err != nil {
@@ -237,7 +241,7 @@ func loadOne(path string, enforceContainment bool) (*Config, error) {
 	}
 
 	var cfg Config
-	if err := yaml.Unmarshal(data, &cfg); err != nil {
+	if err := ioyaml.UnmarshalStrict(data, &cfg); err != nil {
 		return nil, fmt.Errorf("parsing YAML: %w", err)
 	}
 
@@ -546,6 +550,10 @@ func (c *Config) validateMCPItems() error {
 // agents: ["*"] under a list bullet. We normalise all accepted shapes to
 // []string so downstream code does not need to care.
 func (s *ConfigSkill) UnmarshalYAML(node *yaml.Node) error {
+	slog.Debug("decoding config skill", "line", node.Line, "kind", node.Kind)
+	if err := ioyaml.ValidateMappingKeys(node, "source", "agents", "global", "select", "tools"); err != nil {
+		return err
+	}
 	type rawSkill struct {
 		Source string       `yaml:"source"`
 		Agents yaml.Node    `yaml:"agents,omitempty"`
@@ -575,8 +583,10 @@ func (s *ConfigSkill) UnmarshalYAML(node *yaml.Node) error {
 // ConfigSkill.UnmarshalYAML for accepted shapes.
 func decodeAgents(n *yaml.Node) ([]string, error) {
 	if n == nil || n.Kind == 0 {
+		slog.Debug("decoding agents field", "line", 0, "kind", 0)
 		return nil, nil
 	}
+	slog.Debug("decoding agents field", "line", n.Line, "kind", n.Kind)
 	switch n.Kind {
 	case yaml.ScalarNode:
 		return []string{n.Value}, nil
@@ -623,11 +633,15 @@ func (mc ConfigMcp) MergeEnabled() bool {
 // Bare strings are the common case for tools without install hints; the mapping
 // form is used when a hint is provided.
 func (t *ConfigTool) UnmarshalYAML(node *yaml.Node) error {
+	slog.Debug("decoding config tool", "line", node.Line, "kind", node.Kind)
 	switch node.Kind {
 	case yaml.ScalarNode:
 		t.Name = node.Value
 		return nil
 	case yaml.MappingNode:
+		if err := ioyaml.ValidateMappingKeys(node, "name", "hint"); err != nil {
+			return err
+		}
 		type rawTool struct {
 			Name string `yaml:"name"`
 			Hint string `yaml:"hint,omitempty"`
