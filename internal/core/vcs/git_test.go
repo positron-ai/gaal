@@ -2,14 +2,33 @@ package vcs
 
 import (
 	"context"
+	"errors"
 	"os"
 	"path/filepath"
 	"testing"
 	"time"
 
 	gogit "github.com/go-git/go-git/v5"
+	gogitconfig "github.com/go-git/go-git/v5/config"
 	"github.com/go-git/go-git/v5/plumbing/object"
 )
+
+// setOrigin replaces origin's URL on the repo at dir.
+func setOrigin(t *testing.T, dir, urlStr string) {
+	t.Helper()
+	r, err := gogit.PlainOpen(dir)
+	if err != nil {
+		t.Fatalf("PlainOpen: %v", err)
+	}
+	cfg, err := r.Config()
+	if err != nil {
+		t.Fatalf("Config: %v", err)
+	}
+	cfg.Remotes["origin"] = &gogitconfig.RemoteConfig{Name: "origin", URLs: []string{urlStr}}
+	if err := r.SetConfig(cfg); err != nil {
+		t.Fatalf("SetConfig: %v", err)
+	}
+}
 
 // makeLocalRepo initialises a git repo in dir, creates one file, and commits it.
 func makeLocalRepo(t *testing.T, dir string) *gogit.Repository {
@@ -72,7 +91,7 @@ func TestVcsGit_Update_AfterClone(t *testing.T) {
 	if err := g.Clone(context.Background(), srcDir, destDir, ""); err != nil {
 		t.Fatalf("Clone: %v", err)
 	}
-	err := g.Update(context.Background(), destDir, "")
+	err := g.Update(context.Background(), "", destDir, "")
 	_ = err
 }
 
@@ -238,7 +257,7 @@ func TestVcsGit_Clone_BadURL(t *testing.T) {
 
 func TestVcsGit_Update_NotARepo(t *testing.T) {
 	g := &VcsGit{}
-	err := g.Update(context.Background(), t.TempDir(), "")
+	err := g.Update(context.Background(), "", t.TempDir(), "")
 	if err == nil {
 		t.Fatal("expected error when updating non-git directory")
 	}
@@ -260,7 +279,7 @@ func TestVcsGit_Update_InitedRepoNoRemote(t *testing.T) {
 	g := &VcsGit{}
 	// Update will fail because there is no remote configured; this covers
 	// the fetch error branch.
-	err := g.Update(context.Background(), dir, "")
+	err := g.Update(context.Background(), "", dir, "")
 	if err == nil {
 		t.Log("update succeeded unexpectedly on repo without remote")
 	}
@@ -363,11 +382,81 @@ func TestVcsGit_Update_Shallow_ResetsToOrigin(t *testing.T) {
 		t.Fatalf("Commit: %v", err)
 	}
 
-	if err := g.Update(context.Background(), destDir, ""); err != nil {
+	if err := g.Update(context.Background(), "", destDir, ""); err != nil {
 		t.Fatalf("shallow Update: %v", err)
 	}
 	// The new file should now exist in the destination.
 	if _, err := os.Stat(filepath.Join(destDir, "extra.txt")); err != nil {
 		t.Errorf("expected extra.txt after shallow update: %v", err)
+	}
+}
+
+// ---------------------------------------------------------------------------
+// VcsGit - Update URL mismatch detection (#220)
+// ---------------------------------------------------------------------------
+
+func TestVcsGit_Update_URLMismatch_HTTPSvsSSH(t *testing.T) {
+	srcDir := t.TempDir()
+	makeLocalRepo(t, srcDir)
+	destDir := filepath.Join(t.TempDir(), "clone")
+	g := &VcsGit{}
+	if err := g.Clone(context.Background(), srcDir, destDir, ""); err != nil {
+		t.Fatalf("Clone: %v", err)
+	}
+	// Rewrite origin so it points at a different host (real mismatch).
+	setOrigin(t, destDir, "git@gitlab.example.com:owner/repo.git")
+
+	err := g.Update(context.Background(), "https://github.com/owner/repo.git", destDir, "")
+	if err == nil {
+		t.Fatal("expected mismatch error")
+	}
+	var mm *RemoteURLMismatchError
+	if !errors.As(err, &mm) {
+		t.Fatalf("expected *RemoteURLMismatchError, got %T: %v", err, err)
+	}
+	if mm.Path != destDir {
+		t.Errorf("Path = %q, want %q", mm.Path, destDir)
+	}
+	if mm.ConfiguredURL != "https://github.com/owner/repo.git" {
+		t.Errorf("ConfiguredURL = %q", mm.ConfiguredURL)
+	}
+	if mm.RemoteURL != "git@gitlab.example.com:owner/repo.git" {
+		t.Errorf("RemoteURL = %q", mm.RemoteURL)
+	}
+}
+
+func TestVcsGit_Update_URLMismatch_EmptyURLSkipsCheck(t *testing.T) {
+	srcDir := t.TempDir()
+	makeLocalRepo(t, srcDir)
+	destDir := filepath.Join(t.TempDir(), "clone")
+	g := &VcsGit{}
+	if err := g.Clone(context.Background(), srcDir, destDir, ""); err != nil {
+		t.Fatalf("Clone: %v", err)
+	}
+	// Origin pointing at something gaal would normally flag — but with an
+	// empty configured URL we must skip the check entirely (skill manager
+	// behaviour).
+	setOrigin(t, destDir, "https://elsewhere.invalid/x.git")
+	err := g.Update(context.Background(), "", destDir, "")
+	var mm *RemoteURLMismatchError
+	if errors.As(err, &mm) {
+		t.Fatalf("did not expect mismatch error with empty URL, got: %v", err)
+	}
+}
+
+func TestVcsGit_Update_URLMatch_NormalisedEquivalent(t *testing.T) {
+	srcDir := t.TempDir()
+	makeLocalRepo(t, srcDir)
+	destDir := filepath.Join(t.TempDir(), "clone")
+	g := &VcsGit{}
+	if err := g.Clone(context.Background(), srcDir, destDir, ""); err != nil {
+		t.Fatalf("Clone: %v", err)
+	}
+	// Configured URL adds a trailing slash; origin keeps the bare path. The
+	// normaliser must collapse these so no mismatch is raised.
+	err := g.Update(context.Background(), srcDir+"/", destDir, "")
+	var mm *RemoteURLMismatchError
+	if errors.As(err, &mm) {
+		t.Fatalf("unexpected mismatch for equivalent URLs: %v", err)
 	}
 }

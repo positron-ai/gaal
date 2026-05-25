@@ -59,10 +59,23 @@ func (g *VcsGit) Clone(ctx context.Context, url, path, version string) error {
 	return nil
 }
 
-func (g *VcsGit) Update(ctx context.Context, path, version string) error {
+func (g *VcsGit) Update(ctx context.Context, url, path, version string) error {
 	r, err := gogit.PlainOpen(path)
 	if err != nil {
 		return fmt.Errorf("opening repository at %s: %w", shortPath(path), err)
+	}
+
+	if url != "" {
+		if remote, rerr := r.Remote("origin"); rerr == nil && len(remote.Config().URLs) > 0 {
+			actual := remote.Config().URLs[0]
+			if normalizeGitURL(actual) != normalizeGitURL(url) {
+				return &RemoteURLMismatchError{
+					Path:          path,
+					ConfiguredURL: url,
+					RemoteURL:     actual,
+				}
+			}
+		}
 	}
 
 	slog.DebugContext(ctx, "fetching", "path", shortPath(path))
