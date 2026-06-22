@@ -12,10 +12,10 @@ import (
 	"github.com/spf13/cobra"
 	"golang.org/x/term"
 
-	"gaal/internal/config"
-	"gaal/internal/engine"
-	"gaal/internal/logger"
-	"gaal/internal/telemetry"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/engine"
+	"github.com/positron-ai/gaal/internal/logger"
+	"github.com/positron-ai/gaal/internal/telemetry"
 )
 
 // ExitCodeError carries a process exit code separate from the error's

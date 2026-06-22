@@ -5,11 +5,11 @@ import (
 	"log/slog"
 	"os"
 
-	"gaal/internal/content"
-	"gaal/internal/engine/render"
-	"gaal/internal/mcp"
-	"gaal/internal/repo"
-	"gaal/internal/skill"
+	"github.com/positron-ai/gaal/internal/content"
+	"github.com/positron-ai/gaal/internal/engine/render"
+	"github.com/positron-ai/gaal/internal/mcp"
+	"github.com/positron-ai/gaal/internal/repo"
+	"github.com/positron-ai/gaal/internal/skill"
 )
 
 // SyncPlan computes what a sync would do without performing any writes.

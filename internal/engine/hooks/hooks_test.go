@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"gaal/internal/config"
-	"gaal/internal/engine/render"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/engine/render"
 )
 
 // recorder is a test executor that captures every hook invocation in order

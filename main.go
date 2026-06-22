@@ -1,6 +1,6 @@
 package main
 
-import "gaal/cmd"
+import "github.com/positron-ai/gaal/cmd"
 
 func main() {
 	cmd.Execute()

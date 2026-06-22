@@ -1,6 +1,6 @@
 package skill
 
-import "gaal/internal/core/agent"
+import "github.com/positron-ai/gaal/internal/core/agent"
 
 // AgentInfo is a type alias for agent.Info, kept for backward compatibility
 // within this package.

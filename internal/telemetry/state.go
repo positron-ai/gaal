@@ -10,10 +10,10 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"gaal/internal/config"
-	configtemplate "gaal/internal/config/template"
-	"gaal/internal/core/io/secfile"
-	ioyaml "gaal/internal/core/io/yaml"
+	"github.com/positron-ai/gaal/internal/config"
+	configtemplate "github.com/positron-ai/gaal/internal/config/template"
+	"github.com/positron-ai/gaal/internal/core/io/secfile"
+	ioyaml "github.com/positron-ai/gaal/internal/core/io/yaml"
 )
 
 // consentState represents the resolved telemetry consent.

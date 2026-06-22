@@ -15,8 +15,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"gaal/internal/httpx"
-	"gaal/internal/urlx"
+	"github.com/positron-ai/gaal/internal/httpx"
+	"github.com/positron-ai/gaal/internal/urlx"
 )
 
 // VcsArchive implements VCS for tar and zip archives fetched over HTTP(S).

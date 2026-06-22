@@ -10,11 +10,11 @@ import (
 	"strings"
 	"time"
 
-	"gaal/internal/config"
-	"gaal/internal/core/agent"
-	"gaal/internal/skill"
-	"gaal/internal/telemetry"
-	"gaal/internal/tools"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/core/agent"
+	"github.com/positron-ai/gaal/internal/skill"
+	"github.com/positron-ai/gaal/internal/telemetry"
+	"github.com/positron-ai/gaal/internal/tools"
 )
 
 // Severity indicates the importance level of a doctor finding.

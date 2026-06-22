@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"gaal/internal/core/agent"
+	"github.com/positron-ai/gaal/internal/core/agent"
 )
 
 // scanMCPs discovers MCP config files by reading each registered agent's

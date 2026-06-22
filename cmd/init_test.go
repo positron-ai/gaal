@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"gaal/internal/config"
-	"gaal/internal/engine"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/engine"
 )
 
 // resetInitFlags restores the package-level flag state between cases.

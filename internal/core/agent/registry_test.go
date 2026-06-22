@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"gaal/internal/core/agent"
+	"github.com/positron-ai/gaal/internal/core/agent"
 )
 
 func TestNames_NonEmpty(t *testing.T) {

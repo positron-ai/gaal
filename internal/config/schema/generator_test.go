@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"gaal/internal/config/schema"
+	"github.com/positron-ai/gaal/internal/config/schema"
 )
 
 type sampleStruct struct {

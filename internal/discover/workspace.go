@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"gaal/internal/core/vcs"
+	"github.com/positron-ai/gaal/internal/core/vcs"
 )
 
 // skipDirs is the set of directory names that the workspace walk never descends into.

@@ -7,7 +7,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"gaal/internal/httpx"
+	"github.com/positron-ai/gaal/internal/httpx"
 )
 
 // These variables are optionally injected at build time via ldflags:

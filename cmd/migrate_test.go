@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"gaal/internal/engine"
+	"github.com/positron-ai/gaal/internal/engine"
 )
 
 func resetMigrateFlags(t *testing.T) {

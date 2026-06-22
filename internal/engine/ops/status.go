@@ -8,12 +8,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	"gaal/internal/content"
-	"gaal/internal/discover"
-	"gaal/internal/engine/render"
-	"gaal/internal/mcp"
-	"gaal/internal/repo"
-	"gaal/internal/skill"
+	"github.com/positron-ai/gaal/internal/content"
+	"github.com/positron-ai/gaal/internal/discover"
+	"github.com/positron-ai/gaal/internal/engine/render"
+	"github.com/positron-ai/gaal/internal/mcp"
+	"github.com/positron-ai/gaal/internal/repo"
+	"github.com/positron-ai/gaal/internal/skill"
 )
 
 // Collect gathers the current status of all resources without side effects.

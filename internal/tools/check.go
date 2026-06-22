@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"os/exec"
 
-	"gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/config"
 )
 
 // SourceWorkspace is the attribution string used for tools declared at the

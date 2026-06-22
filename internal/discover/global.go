@@ -7,9 +7,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"gaal/internal/core/agent"
-	ioyaml "gaal/internal/core/io/yaml"
-	"gaal/internal/core/vcs"
+	"github.com/positron-ai/gaal/internal/core/agent"
+	ioyaml "github.com/positron-ai/gaal/internal/core/io/yaml"
+	"github.com/positron-ai/gaal/internal/core/vcs"
 )
 
 // scanGlobal discovers skill resources at predictable agent-registry paths.

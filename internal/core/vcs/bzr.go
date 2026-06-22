@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"gaal/internal/runner"
-	"gaal/internal/urlx"
+	"github.com/positron-ai/gaal/internal/runner"
+	"github.com/positron-ai/gaal/internal/urlx"
 )
 
 // VcsBazaar implements VCS for Bazaar repositories.

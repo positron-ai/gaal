@@ -7,9 +7,9 @@ import (
 	"github.com/spf13/cobra"
 	"golang.org/x/term"
 
-	"gaal/internal/engine"
-	"gaal/internal/engine/render"
-	"gaal/internal/telemetry"
+	"github.com/positron-ai/gaal/internal/engine"
+	"github.com/positron-ai/gaal/internal/engine/render"
+	"github.com/positron-ai/gaal/internal/telemetry"
 )
 
 var statusCmd = &cobra.Command{

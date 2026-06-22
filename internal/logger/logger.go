@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"os"
 
-	"gaal/internal/core/io/secfile"
+	"github.com/positron-ai/gaal/internal/core/io/secfile"
 )
 
 // Setup initialises the global slog logger.

@@ -6,10 +6,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"gaal/internal/core/agent"
-	"gaal/internal/engine/render"
-	"gaal/internal/mcp"
-	"gaal/internal/skill"
+	"github.com/positron-ai/gaal/internal/core/agent"
+	"github.com/positron-ai/gaal/internal/engine/render"
+	"github.com/positron-ai/gaal/internal/mcp"
+	"github.com/positron-ai/gaal/internal/skill"
 )
 
 // Audit discovers all skills and MCP servers installed on the machine and

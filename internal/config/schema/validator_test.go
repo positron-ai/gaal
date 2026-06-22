@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"gaal/internal/config/schema"
+	"github.com/positron-ai/gaal/internal/config/schema"
 )
 
 type validStruct struct {

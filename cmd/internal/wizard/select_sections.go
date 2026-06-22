@@ -7,7 +7,7 @@ import (
 
 	"github.com/pterm/pterm"
 
-	"gaal/internal/engine/ops"
+	"github.com/positron-ai/gaal/internal/engine/ops"
 )
 
 // ErrCancelled is returned by SelectSections when the user aborts the prompt.

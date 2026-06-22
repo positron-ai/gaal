@@ -13,11 +13,11 @@ import (
 	"strings"
 	"sync"
 
-	"gaal/internal/config"
-	"gaal/internal/core/agent"
-	"gaal/internal/core/vcs"
-	"gaal/internal/discover"
-	"gaal/internal/urlx"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/core/agent"
+	"github.com/positron-ai/gaal/internal/core/vcs"
+	"github.com/positron-ai/gaal/internal/discover"
+	"github.com/positron-ai/gaal/internal/urlx"
 )
 
 // buildDiscoveryDirs returns the deduplicated list of subdirectories to scan

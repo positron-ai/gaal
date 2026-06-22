@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/config"
 )
 
 func TestBuildPlan_GlobalFlagMatchesScope(t *testing.T) {

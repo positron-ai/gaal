@@ -5,8 +5,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"gaal/internal/engine"
-	"gaal/internal/telemetry"
+	"github.com/positron-ai/gaal/internal/engine"
+	"github.com/positron-ai/gaal/internal/telemetry"
 )
 
 var (

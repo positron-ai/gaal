@@ -15,11 +15,11 @@ import (
 	"strings"
 	"sync"
 
-	"gaal/internal/config"
-	"gaal/internal/core/agent"
-	"gaal/internal/discover"
-	"gaal/internal/httpx"
-	"gaal/internal/urlx"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/core/agent"
+	"github.com/positron-ai/gaal/internal/discover"
+	"github.com/positron-ai/gaal/internal/httpx"
+	"github.com/positron-ai/gaal/internal/urlx"
 )
 
 // serverEntry mirrors the MCP server JSON structure used by Claude Desktop,

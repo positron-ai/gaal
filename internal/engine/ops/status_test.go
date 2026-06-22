@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"gaal/internal/discover"
-	"gaal/internal/engine/render"
+	"github.com/positron-ai/gaal/internal/discover"
+	"github.com/positron-ai/gaal/internal/engine/render"
 )
 
 // TestOrDefault verifies the orDefault helper.

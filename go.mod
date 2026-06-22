@@ -1,4 +1,4 @@
-module gaal
+module github.com/positron-ai/gaal
 
 go 1.26
 

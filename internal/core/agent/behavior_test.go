@@ -3,7 +3,7 @@ package agent_test
 import (
 	"testing"
 
-	"gaal/internal/core/agent"
+	"github.com/positron-ai/gaal/internal/core/agent"
 )
 
 // ── Validate matrix ─────────────────────────────────────────────────────────

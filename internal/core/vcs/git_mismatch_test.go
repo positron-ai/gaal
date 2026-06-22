@@ -60,7 +60,7 @@ func TestRemoteURLMismatchError_Message(t *testing.T) {
 	}
 	msg := err.Error()
 	for _, want := range []string{
-		"gaal.yaml URL is HTTPS",
+		"github.com/positron-ai/gaal.yaml URL is HTTPS",
 		"remote at /home/u/repo is SSH",
 		"https://github.com/owner/repo.git",
 		"git@github.com:owner/repo.git",

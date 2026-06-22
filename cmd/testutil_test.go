@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/config"
 )
 
 // captureStdout redirects os.Stdout to an os.Pipe for the duration of fn,

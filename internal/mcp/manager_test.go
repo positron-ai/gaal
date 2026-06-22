@@ -12,7 +12,7 @@ import (
 	"strings"
 	"testing"
 
-	"gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/config"
 )
 
 func TestMergeIntoTarget_CreatesNewFile(t *testing.T) {

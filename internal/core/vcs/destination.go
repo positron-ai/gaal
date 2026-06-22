@@ -31,7 +31,7 @@ func (e *NonEmptyDestinationError) Error() string {
 	}
 	return fmt.Sprintf(
 		"destination %s is not empty (contains: %s%s); "+
-			"gaal refuses to clone into a directory with existing content to avoid "+
+			"github.com/positron-ai/gaal refuses to clone into a directory with existing content to avoid "+
 			"overwriting untracked files — move or delete the existing content, or "+
 			"point `repositories:` at a different path",
 		e.Path,

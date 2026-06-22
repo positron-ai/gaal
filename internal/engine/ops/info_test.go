@@ -8,8 +8,8 @@ import (
 
 	"github.com/pterm/pterm"
 
-	"gaal/internal/config"
-	"gaal/internal/engine/render"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/engine/render"
 )
 
 // ── renderRepoInfo ────────────────────────────────────────────────────────────

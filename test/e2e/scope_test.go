@@ -252,7 +252,7 @@ func TestScope_NoSpuriousFiles(t *testing.T) {
 		".local":      "gaal must not write under ~/.local/ (XDG state should land in ~/.cache/gaal/state)",
 		".gaal-state": "legacy state location should not be re-introduced",
 		".gaal-cache": "legacy cache location should not be re-introduced",
-		"gaal.yaml":   "gaal must not write a yaml at $HOME root (those go to ~/.config/gaal/)",
+		"github.com/positron-ai/gaal.yaml":   "gaal must not write a yaml at $HOME root (those go to ~/.config/gaal/)",
 	}
 	for _, e := range homeEntries {
 		if reason, bad := denied[e]; bad {

@@ -7,9 +7,9 @@ import (
 	"log/slog"
 	"sync"
 
-	"gaal/internal/config"
-	"gaal/internal/core/vcs"
-	"gaal/internal/urlx"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/core/vcs"
+	"github.com/positron-ai/gaal/internal/urlx"
 )
 
 // Status holds the sync state of a single repository.

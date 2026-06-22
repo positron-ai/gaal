@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"gaal/internal/skill"
+	"github.com/positron-ai/gaal/internal/skill"
 )
 
 func TestIsAgentInstalled_ProjectScope(t *testing.T) {

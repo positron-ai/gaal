@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"gaal/internal/config"
-	"gaal/internal/tools"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/tools"
 )
 
 func TestCollect_EmptyConfig_ReturnsNil(t *testing.T) {

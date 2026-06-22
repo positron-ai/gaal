@@ -11,10 +11,10 @@ import (
 	"sync"
 	"time"
 
-	"gaal/internal/config"
-	"gaal/internal/core/agent"
-	"gaal/internal/core/io/secfile"
-	"gaal/internal/skill"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/core/agent"
+	"github.com/positron-ai/gaal/internal/core/io/secfile"
+	"github.com/positron-ai/gaal/internal/skill"
 )
 
 // Package-level state, set once by Init.

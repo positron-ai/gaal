@@ -9,10 +9,10 @@ import (
 	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
 
-	"gaal/internal/config"
-	"gaal/internal/engine"
-	"gaal/internal/engine/ops"
-	"gaal/internal/telemetry"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/engine"
+	"github.com/positron-ai/gaal/internal/engine/ops"
+	"github.com/positron-ai/gaal/internal/telemetry"
 )
 
 var (

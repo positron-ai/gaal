@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/config"
 )
 
 func TestToCloneURL_GitHubShorthand(t *testing.T) {

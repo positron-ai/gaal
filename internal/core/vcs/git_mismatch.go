@@ -20,7 +20,7 @@ type RemoteURLMismatchError struct {
 
 func (e *RemoteURLMismatchError) Error() string {
 	return fmt.Sprintf(
-		"gaal.yaml URL is %s but the remote at %s is %s; "+
+		"github.com/positron-ai/gaal.yaml URL is %s but the remote at %s is %s; "+
 			"either update the remote (`git remote set-url origin %s`) "+
 			"or change `url:` in gaal.yaml to match (current remote: %s)",
 		urlProtocolLabel(e.ConfiguredURL),

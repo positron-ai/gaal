@@ -9,14 +9,14 @@ import (
 	"path/filepath"
 	"time"
 
-	"gaal/internal/config"
-	"gaal/internal/content"
-	"gaal/internal/engine/hooks"
-	"gaal/internal/engine/ops"
-	"gaal/internal/engine/render"
-	"gaal/internal/mcp"
-	"gaal/internal/repo"
-	"gaal/internal/skill"
+	"github.com/positron-ai/gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/content"
+	"github.com/positron-ai/gaal/internal/engine/hooks"
+	"github.com/positron-ai/gaal/internal/engine/ops"
+	"github.com/positron-ai/gaal/internal/engine/render"
+	"github.com/positron-ai/gaal/internal/mcp"
+	"github.com/positron-ai/gaal/internal/repo"
+	"github.com/positron-ai/gaal/internal/skill"
 )
 
 // Re-exported types from the render sub-package for backward compatibility.

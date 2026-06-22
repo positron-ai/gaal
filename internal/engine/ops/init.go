@@ -9,11 +9,10 @@ import (
 	"path/filepath"
 	"time"
 
-	ioyaml "gaal/internal/core/io/yaml"
-
-	"gaal/internal/config"
-	configtemplate "gaal/internal/config/template"
-	"gaal/internal/core/io/secfile"
+	"github.com/positron-ai/gaal/internal/config"
+	configtemplate "github.com/positron-ai/gaal/internal/config/template"
+	"github.com/positron-ai/gaal/internal/core/io/secfile"
+	ioyaml "github.com/positron-ai/gaal/internal/core/io/yaml"
 )
 
 // Init writes the documented gaal.yaml skeleton to dest.

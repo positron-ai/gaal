@@ -8,7 +8,7 @@ import (
 
 	"github.com/pterm/pterm"
 
-	"gaal/internal/config"
+	"github.com/positron-ai/gaal/internal/config"
 )
 
 // ── Info (engine method) ──────────────────────────────────────────────────────

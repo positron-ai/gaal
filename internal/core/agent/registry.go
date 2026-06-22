@@ -10,9 +10,9 @@ import (
 	"sort"
 	"strings"
 
-	"gaal/internal/config/platform"
+	"github.com/positron-ai/gaal/internal/config/platform"
 
-	ioyaml "gaal/internal/core/io/yaml"
+	ioyaml "github.com/positron-ai/gaal/internal/core/io/yaml"
 )
 
 // Info describes the file-system layout for a coding agent.

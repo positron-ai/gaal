@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"gaal/internal/runner"
-	"gaal/internal/urlx"
+	"github.com/positron-ai/gaal/internal/runner"
+	"github.com/positron-ai/gaal/internal/urlx"
 )
 
 // VcsSVN implements VCS for Subversion repositories.

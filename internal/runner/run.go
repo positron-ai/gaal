@@ -10,7 +10,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"gaal/internal/logger"
+	"github.com/positron-ai/gaal/internal/logger"
 )
 
 // Run executes name with args in dir, showing progress appropriate to the
